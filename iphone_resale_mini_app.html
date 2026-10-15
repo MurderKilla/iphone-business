@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#08090b">
+<title>iPhone Resale — Dashboard</title>
+<style>
+:root{color-scheme:dark;--bg:#08090b;--panel:#17191d;--panel2:#101215;--line:#292c31;--text:#f5f6f7;--muted:#9a9ea7;--green:#62d6a0;--green2:#2cc985;--radius:24px}
+*{box-sizing:border-box}html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;font-size:16px;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}button{cursor:pointer;color:inherit}
+.app{max-width:560px;margin:0 auto;min-height:100dvh;padding:env(safe-area-inset-top) 18px calc(98px + env(safe-area-inset-bottom))}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 2px 24px}.eyebrow{font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-bottom:8px}.heading{font-size:31px;font-weight:750;letter-spacing:-.04em;margin:0}.subheading{color:var(--muted);font-size:14px;margin-top:6px}.top-icon{width:42px;height:42px;border:1px solid var(--line);border-radius:15px;background:#17191d;display:grid;place-items:center}
+.panel{background:linear-gradient(145deg,#1a1c20,#15171a);border:1px solid #202328;border-radius:var(--radius);padding:23px;margin-bottom:14px}.label{color:var(--muted);font-size:15px}.profit{font-size:clamp(36px,9vw,46px);font-weight:780;letter-spacing:-.055em;margin:10px 0 4px}.green{color:var(--green)}.growth{font-size:15px;color:var(--green);margin:8px 0 0}.rule{height:1px;background:#34373d;margin:22px 0}.two-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}.stat-value{font-size:23px;font-weight:720;letter-spacing:-.03em;margin-top:8px}.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 26px}.metric{background:var(--panel);border:1px solid #202328;border-radius:22px;padding:18px;min-height:142px}.metric svg{color:var(--green);margin-bottom:12px}.metric .big{font-size:29px;font-weight:750;letter-spacing:-.04em}.metric .desc{font-size:14px;line-height:1.4;color:var(--muted);margin-top:8px}.section-head{display:flex;justify-content:space-between;align-items:center;margin:25px 0 14px}.section-head h2{font-size:20px;letter-spacing:-.03em;margin:0}.text-button{background:none;border:0;color:var(--green);font-size:14px;padding:7px 0}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.action{border:1px solid #282b30;border-radius:21px;background:#101215;min-height:102px;text-align:left;padding:17px;transition:transform .15s,border-color .15s}.action:active{transform:scale(.98)}.action svg{color:var(--green);display:block;margin-bottom:11px}.action strong{display:block;font-size:16px}.action small{display:block;color:var(--muted);font-size:12px;margin-top:5px}.deal{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}.deal:last-child{border-bottom:0}.phone-thumb{width:60px;height:67px;border-radius:15px;background:linear-gradient(135deg,#393d42,#101114);display:grid;place-items:center;overflow:hidden;border:1px solid #3a3d42}.phone-thumb svg{width:34px;height:48px}.deal-name{font-weight:700;font-size:15px}.deal-meta{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5}.deal-profit{text-align:right;color:var(--green);font-weight:720;white-space:nowrap;font-size:14px}.deal-date{font-size:11px;color:var(--muted);font-weight:400;margin-top:8px}.bottom-nav{position:fixed;z-index:10;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);padding:10px 12px calc(12px + env(safe-area-inset-bottom));background:rgba(12,13,15,.94);backdrop-filter:blur(22px);border-top:1px solid #292c31;display:grid;grid-template-columns:repeat(5,1fr);gap:2px}.nav-item{background:none;border:0;color:#858a93;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10px;padding:6px 0}.nav-item svg{width:22px;height:22px}.nav-item.active{color:var(--green)}.page{display:none}.page.active{display:block}.page-title{font-size:30px;font-weight:760;letter-spacing:-.04em;margin:0 0 18px}.finance-hero{background:#1c1e22}.finance-hero .profit{color:var(--green)}.chart-panel{padding:15px 14px 12px}.segmented{display:grid;grid-template-columns:repeat(3,1fr);background:#111316;border-radius:13px;padding:4px;margin-bottom:16px}.segmented button{border:0;background:transparent;border-radius:10px;padding:9px 2px;font-size:12px;color:var(--muted)}.segmented button.active{background:#303339;color:white}.chart{width:100%;height:175px;display:block}.chart-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;padding:0 4px}.finance-grid .metric{min-height:120px;background:#0c0d0f}.finance-grid .metric .big{font-size:22px}.inventory-row{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}.inventory-row:last-child{border:0}.pill{font-size:11px;color:var(--green);background:#123326;border-radius:999px;padding:6px 9px}.search{width:100%;padding:14px 16px;border:1px solid var(--line);background:#111316;color:white;border-radius:15px;outline:none;margin-bottom:12px}.empty-note{font-size:12px;color:var(--muted);text-align:center;margin:22px 0 0}.modal-backdrop{position:fixed;inset:0;background:#000a;backdrop-filter:blur(5px);z-index:20;display:none;align-items:flex-end;justify-content:center}.modal-backdrop.show{display:flex}.modal{width:min(560px,100%);background:#17191d;border:1px solid #34373d;border-radius:26px 26px 0 0;padding:24px 20px calc(24px + env(safe-area-inset-bottom));max-height:88dvh;overflow:auto}.modal h2{margin:0 0 18px;font-size:24px}.field{display:block;margin:13px 0}.field span{display:block;color:var(--muted);font-size:13px;margin-bottom:8px}.field input,.field select{width:100%;background:#0b0c0e;border:1px solid #30333a;border-radius:13px;padding:13px;color:white;outline:none}.primary{width:100%;border:0;border-radius:15px;background:var(--green);color:#06110b;font-weight:750;padding:15px;margin-top:10px}.cancel{width:100%;border:1px solid var(--line);border-radius:15px;background:transparent;padding:13px;margin-top:8px}.toast{position:fixed;z-index:30;left:50%;bottom:100px;transform:translateX(-50%);background:#22252a;border:1px solid #393d44;padding:12px 17px;border-radius:14px;white-space:nowrap;display:none;font-size:13px}.toast.show{display:block}@media(min-width:500px){.app{padding-left:24px;padding-right:24px}.panel{padding:25px}.metric{padding:20px}}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="topbar">
+    <div><div class="eyebrow">IPHONE RESALE / BUSINESS</div><div class="subheading" id="greeting">Твой бизнес в цифрах</div></div>
+    <button class="top-icon" aria-label="Меню" onclick="toast('Демо-интерфейс')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  </header>
+
+  <section class="page active" id="home">
+    <h1 class="page-title">Главная</h1>
+    <div class="panel">
+      <div class="label">Чистая прибыль за месяц</div><div class="profit" id="homeProfit">+84 500 ₽</div><div class="growth">↗ 12,8% к прошлому месяцу</div>
+      <div class="rule"></div><div class="two-stats"><div><div class="label">Оборот</div><div class="stat-value" id="turnover">426 000 ₽</div></div><div><div class="label">В товаре</div><div class="stat-value" id="inStockMoney">218 000 ₽</div></div></div>
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="M3 7v10l9 5 9-5V7M12 12v10"/></svg><div class="big" id="stockCount">12</div><div class="desc">Устройств<br>в наличии</div></div>
+      <div class="metric"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 17 6-6 4 3 8-9"/><path d="M15 5h6v6"/></svg><div class="big">7 040 ₽</div><div class="desc">Средняя прибыль<br>с продажи</div></div>
+    </div>
+    <div class="section-head"><h2>Быстрые действия</h2></div>
+    <div class="actions">
+      <button class="action" onclick="openModal('buy')"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></svg><strong>Закупка</strong><small>Добавить устройство</small></button>
+      <button class="action" onclick="openModal('sell')"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M10 18h4"/></svg><strong>Продажа</strong><small>Оформить продажу</small></button>
+      <button class="action" onclick="openModal('exchange')"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h15l-4-4M20 17H5l4 4"/></svg><strong>Обмен</strong><small>Обмен устройств</small></button>
+      <button class="action" onclick="openModal('expense')"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M7 15h4"/></svg><strong>Расход</strong><small>Добавить расход</small></button>
+    </div>
+    <div class="section-head"><h2>Последние сделки</h2><button class="text-button" onclick="showPage('history')">Все →</button></div>
+    <div id="homeDeals"></div>
+    <p class="empty-note">Демо-макет · цифры для примера. Сохранённые здесь операции остаются в этом браузере.</p>
+  </section>
+
+  <section class="page" id="finance">
+    <h1 class="page-title">Финансы</h1>
+    <div class="panel finance-hero"><div class="label">Чистая прибыль · октябрь</div><div class="profit" id="financeProfit">+84 500 ₽</div><div class="label">К прошлому месяцу: <span class="green">+12,8%</span></div><div class="rule"></div><div class="two-stats"><div><div class="label">Оборот</div><div class="stat-value">426 000 ₽</div></div><div><div class="label">В товаре</div><div class="stat-value">218 000 ₽</div></div></div></div>
+    <div class="metric-grid finance-grid">
+      <div class="metric"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="M3 7v10l9 5 9-5V7M12 12v10"/></svg><div class="desc">В товаре</div><div class="big">218 000 ₽</div></div>
+      <div class="metric"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><div class="desc">В наличии</div><div class="big" id="financeStock">12 шт.</div></div>
+      <div class="metric"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="3"/><circle cx="12" cy="12" r="3"/></svg><div class="desc">Оборот</div><div class="big">426 000 ₽</div></div>
+      <div class="metric"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 17 6-6 4 3 8-9"/><path d="M15 5h6v6"/></svg><div class="desc">Средняя прибыль<br>с продажи</div><div class="big">7 040 ₽</div></div>
+    </div>
+    <div class="section-head"><h2>Статистика</h2></div>
+    <div class="panel chart-panel">
+      <div class="segmented"><button onclick="setPeriod(this,0)">7 дней</button><button class="active" onclick="setPeriod(this,1)">30 дней</button><button onclick="setPeriod(this,2)">90 дней</button></div>
+      <svg class="chart" viewBox="0 0 330 150" preserveAspectRatio="none" aria-label="График прибыли">
+        <defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#39d58a" stop-opacity=".22"/><stop offset="1" stop-color="#39d58a" stop-opacity="0"/></linearGradient></defs>
+        <g stroke="#2b2e33" stroke-width=".7"><path d="M28 15H322M28 48H322M28 81H322M28 114H322"/></g>
+        <g fill="#969ba4" font-size="9"><text x="1" y="18">120k</text><text x="7" y="51">80k</text><text x="7" y="84">40k</text><text x="20" y="117">0</text></g>
+        <path id="chartArea" d="M28 94 L66 88 L104 82 L142 95 L180 85 L218 60 L256 68 L294 66 L322 30 L322 114 L28 114Z" fill="url(#area)"/>
+        <path id="chartLine" d="M28 94 L66 88 L104 82 L142 95 L180 85 L218 60 L256 68 L294 66 L322 30" fill="none" stroke="#38d58a" stroke-width="1.8"/>
+        <g id="chartDots" fill="#54dda0"><circle cx="28" cy="94" r="3"/><circle cx="66" cy="88" r="3"/><circle cx="104" cy="82" r="3"/><circle cx="142" cy="95" r="3"/><circle cx="180" cy="85" r="3"/><circle cx="218" cy="60" r="3"/><circle cx="256" cy="68" r="3"/><circle cx="294" cy="66" r="3"/><circle cx="322" cy="30" r="3"/></g>
+      </svg><div class="chart-labels"><span>13.09</span><span>20.09</span><span>27.09</span><span>04.10</span><span>11.10</span></div>
+    </div>
+    <div class="section-head"><h2>Последние сделки</h2><button class="text-button" onclick="showPage('history')">Все →</button></div><div id="financeDeals"></div>
+    <p class="empty-note">Демо-макет · статистика пока не подключена к Telegram-боту.</p>
+  </section>
+
+  <section class="page" id="stock">
+    <h1 class="page-title">Склад</h1><input class="search" id="search" placeholder="Поиск по модели…" oninput="renderStock()"><div id="stockList" class="panel"></div><button class="primary" onclick="openModal('buy')">＋ Добавить устройство</button><p class="empty-note">Пример склада. Для реального учёта нужно подключить backend.</p>
+  </section>
+  <section class="page" id="add">
+    <h1 class="page-title">Новая операция</h1><div class="actions">
+      <button class="action" onclick="openModal('buy')"><strong>＋ Закупка</strong><small>Добавить iPhone</small></button>
+      <button class="action" onclick="openModal('sell')"><strong>↗ Продажа</strong><small>Продать со склада</small></button>
+      <button class="action" onclick="openModal('exchange')"><strong>⇄ Обмен</strong><small>Обмен устройств</small></button>
+      <button class="action" onclick="openModal('expense')"><strong>▤ Расход</strong><small>Записать расход</small></button>
+    </div></section>
+  <section class="page" id="history"><h1 class="page-title">История</h1><div id="historyDeals"></div><p class="empty-note">Операции, добавленные в демо, сохраняются в localStorage этого браузера.</p></section>
+</main>
+<nav class="bottom-nav" aria-label="Основная навигация">
+<button class="nav-item active" data-page="home" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9"/></svg>Главная</button>
+<button class="nav-item" data-page="stock" onclick="showPage('stock')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="5" width="14" height="16" rx="2"/><path d="M9 5V3h6v2M9 10h6"/></svg>Склад</button>
+<button class="nav-item" data-page="add" onclick="showPage('add')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></svg>Добавить</button>
+<button class="nav-item" data-page="finance" onclick="showPage('finance')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg>Финансы</button>
+<button class="nav-item" data-page="history" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>История</button>
+</nav>
+<div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this)closeModal()"><div class="modal"><h2 id="modalTitle">Добавить операцию</h2><form id="operationForm">
+<label class="field"><span>Модель устройства / описание</span><input id="model" required placeholder="Например, iPhone 15 Pro"></label>
+<label class="field"><span>Память / детали</span><input id="details" placeholder="256 GB · Серый"></label>
+<label class="field"><span id="amountLabel">Цена закупки, ₽</span><input id="amount" type="number" min="1" required placeholder="38000"></label>
+<label class="field" id="saleField" style="display:none"><span>Цена продажи, ₽</span><input id="saleAmount" type="number" min="1" placeholder="47000"></label>
+<label class="field"><span>Дата</span><input id="date" type="date" required></label>
+<button class="primary" type="submit">Сохранить операцию</button><button class="cancel" type="button" onclick="closeModal()">Отмена</button>
+</form></div></div><div class="toast" id="toast"></div>
+<script>
+const initialDeals=[
+ {model:"iPhone 15 Pro",details:"256 GB · Серый",buy:38000,sell:47000,date:"12 окт",status:"sold"},
+ {model:"iPhone 13",details:"128 GB · Синий",buy:20000,sell:24000,date:"10 окт",status:"sold"},
+ {model:"iPhone 14 Pro",details:"256 GB · Фиолетовый",buy:42000,sell:50000,date:"8 окт",status:"sold"}
+];
+const initialStock=[
+ {model:"iPhone 15",details:"128 GB · Чёрный",buy:31000,status:"В наличии"},
+ {model:"iPhone 14 Pro",details:"256 GB · Фиолетовый",buy:42000,status:"В наличии"},
+ {model:"iPhone 13",details:"128 GB · Синий",buy:20000,status:"В наличии"}
+];
+let deals=JSON.parse(localStorage.getItem("iphoneDemoDeals")||"null")||initialDeals;
+let stock=JSON.parse(localStorage.getItem("iphoneDemoStock")||"null")||initialStock;
+let currentType="buy";
+const money=n=>Number(n||0).toLocaleString("ru-RU")+" ₽";
+function save(){localStorage.setItem("iphoneDemoDeals",JSON.stringify(deals));localStorage.setItem("iphoneDemoStock",JSON.stringify(stock))}
+function phoneIcon(){return `<svg viewBox="0 0 40 56" fill="none"><rect x="6" y="2" width="28" height="52" rx="6" fill="#c4c6c8" stroke="#eef0f2" stroke-width="1.2"/><rect x="9" y="5" width="22" height="46" rx="4" fill="#33373c"/><circle cx="20" cy="48" r="1.2" fill="#ddd"/></svg>`}
+function dealHTML(d){let p=(+d.sell||0)-(+d.buy||0);return `<div class="deal"><div class="phone-thumb">${phoneIcon()}</div><div><div class="deal-name">${esc(d.model)}</div><div class="deal-meta">${esc(d.details||"Устройство")}<br>${money(d.buy)} → ${d.sell?money(d.sell):"в наличии"}</div></div><div class="deal-profit" style="color:${d.sell?"var(--green)":"var(--muted)"}">${d.sell?(p>=0?"+":"")+money(p):"В наличии"}<div class="deal-date">${esc(d.date||"Сегодня")}</div></div></div>`}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function render(){let sold=deals.filter(d=>d.sell);document.getElementById("homeDeals").innerHTML=sold.slice(0,3).map(dealHTML).join("")||'<div class="label">Пока нет сделок</div>';document.getElementById("financeDeals").innerHTML=sold.slice(0,3).map(dealHTML).join("")||'<div class="label">Пока нет сделок</div>';document.getElementById("historyDeals").innerHTML=deals.map(dealHTML).join("")||'<div class="panel">История пока пустая</div>';document.getElementById("stockCount").textContent=stock.length;document.getElementById("financeStock").textContent=stock.length+" шт.";renderStock()}
+function renderStock(){let q=(document.getElementById("search")?.value||"").toLowerCase();let filtered=stock.filter(s=>(s.model+" "+s.details).toLowerCase().includes(q));document.getElementById("stockList").innerHTML=filtered.map(s=>`<div class="inventory-row"><div><strong>${esc(s.model)}</strong><div class="deal-meta">${esc(s.details)}<br>Закупка: ${money(s.buy)}</div></div><span class="pill">${esc(s.status||"В наличии")}</span></div>`).join("")||'<div class="label">Ничего не найдено</div>'}
+function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===id));window.scrollTo({top:0,behavior:"smooth"})}
+function toast(s){let t=document.getElementById("toast");t.textContent=s;t.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove("show"),2200)}
+function openModal(type){currentType=type;const titles={buy:"Новая закупка",sell:"Оформить продажу",exchange:"Обмен устройств",expense:"Добавить расход"};document.getElementById("modalTitle").textContent=titles[type];document.getElementById("amountLabel").textContent=type==="expense"?"Сумма расхода, ₽":"Цена закупки / стоимость, ₽";document.getElementById("saleField").style.display=type==="sell"?"block":"none";document.getElementById("model").value="";document.getElementById("details").value="";document.getElementById("amount").value="";document.getElementById("saleAmount").value="";document.getElementById("date").value=new Date().toISOString().slice(0,10);document.getElementById("modalBackdrop").classList.add("show")}
+function closeModal(){document.getElementById("modalBackdrop").classList.remove("show")}
+document.getElementById("operationForm").addEventListener("submit",e=>{e.preventDefault();let model=document.getElementById("model").value.trim(),details=document.getElementById("details").value.trim(),buy=+document.getElementById("amount").value,sell=+document.getElementById("saleAmount").value,date=new Date(document.getElementById("date").value+"T12:00:00").toLocaleDateString("ru-RU",{day:"numeric",month:"short"});if(currentType==="sell"&&!sell){toast("Укажи цену продажи");return}if(currentType==="buy"){stock.unshift({model,details,buy,status:"В наличии"});deals.unshift({model,details,buy,date,status:"stock"})}else if(currentType==="sell"){let idx=stock.findIndex(s=>s.model.toLowerCase()===model.toLowerCase());if(idx>=0)stock.splice(idx,1);deals.unshift({model,details,buy,sell,date,status:"sold"})}else if(currentType==="expense"){deals.unshift({model:"Расход: "+model,details,buy,date,status:"expense"})}else{deals.unshift({model:"Обмен: "+model,details,buy,sell:sell||0,date,status:"exchange"})}save();render();closeModal();toast("Операция сохранена в демо")});
+function setPeriod(btn,period){document.querySelectorAll(".segmented button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");const paths=[[[28,89],[66,78],[104,95],[142,70],[180,82],[218,54],[256,62],[294,43],[322,30]],[[28,94],[66,88],[104,82],[142,95],[180,85],[218,60],[256,68],[294,66],[322,30]],[[28,105],[66,96],[104,88],[142,94],[180,73],[218,77],[256,55],[294,48],[322,18]]][period];const d=paths.map((p,i)=>(i?"L":"M")+p[0]+" "+p[1]).join(" ");document.getElementById("chartLine").setAttribute("d",d);document.getElementById("chartArea").setAttribute("d",d+" L322 114 L28 114Z");document.getElementById("chartDots").innerHTML=paths.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3"/>`).join("");}
+render();
+</script>
+</body>
+</html>
